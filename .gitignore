@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 
 dz_1/auth_vk.ini
+.idea/
