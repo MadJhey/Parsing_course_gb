@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from pprint import pprint
-
+from pymongo import MongoClient
 
 def load_data(update):
     import task1
