@@ -23,16 +23,3 @@ class ParsPipeline:
         collection.insert_one(ItemAdapter(item).asdict())
         return item
 
-class TestPipeline:
-
-    def __init__(self):
-        print("DDDDDDDDDD")
-        # client = MongoClient('localhost', 27017)
-        # self.mongo_base = client.spider1
-
-    def process_item(self, item, spider):
-        # обработка полей
-        print(1)
-        # collection = self.mongo_base[spider.name]
-        # collection.insert_one(ItemAdapter(item).asdict())
-        return item
