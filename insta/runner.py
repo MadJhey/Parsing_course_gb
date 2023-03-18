@@ -1,8 +1,8 @@
 from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings
 
-from book24 import settings
-from book24.spiders.book24 import Book24Spider
+from insta import settings
+from insta.spiders.insta import InstaSpider
 
 if __name__ == '__main__':
 
@@ -10,6 +10,5 @@ if __name__ == '__main__':
     crawler_settings.setmodule(settings)
 
     process = CrawlerProcess(settings=crawler_settings)
-    process.crawl(Book24Spider, query='Сент-Экзюпери')
-
+    process.crawl(InstaSpider)
     process.start()
