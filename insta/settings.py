@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'book24'
+BOT_NAME = 'insta'
 IMAGES_STORE = 'images'
 
 # THUMBS = {'small':100,
 #           'medium: 200'}
 
-SPIDER_MODULES = ['book24.spiders']
-NEWSPIDER_MODULE = 'book24.spiders'
+SPIDER_MODULES = ['insta.spiders']
+NEWSPIDER_MODULE = 'insta.spiders'
 
 LOG_ENABLED = True
 LOG_LEVEL = 'DEBUG'
@@ -26,12 +26,12 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 8
+CONCURRENT_REQUESTS = 16
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 2.25
+DOWNLOAD_DELAY = 2
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -69,8 +69,7 @@ DOWNLOAD_DELAY = 2.25
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'book24.pipelines.Book24ParserPipeline': 300,
-   'book24.pipelines.Book24PhotosPipeline': 250,
+   'insta.pipelines.InstagramPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

@@ -2,14 +2,31 @@
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-
+import time
 from scrapy import signals
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
+from scrapy.downloadermiddlewares.retry import RetryMiddleware
 
+class TooManyRequestsRetryMiddleware(RetryMiddleware):
+    def __init__(self, crawler):
+        super(TooManyRequestsRetryMiddleware, self).__init__(crawler.settings)
+        self.crawler = crawler
 
-class AvitoparserSpiderMiddleware:
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(crawler)
+
+    def process_response(self, request, response, spider):
+        if response.status == 429:
+            self.crawler.engine.pause()
+            spider.logger.info(f'{spider.name} - status 429 - pause')
+            time.sleep(3300)
+            self.crawler.engine.unpause()
+        return response
+
+class InstagramSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -54,9 +71,10 @@ class AvitoparserSpiderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+        spider.logger.info('Привет мир!')
 
 
-class AvitoparserDownloaderMiddleware:
+class InstagramDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
